@@ -17,19 +17,11 @@
   <main>
     <section class="descripcion">
       <h2>¿Por qué consumir germinados?</h2>
-      <p>🌱 Porque son súper nutritivos.
-        Tienen proteínas vegetales, fibra y vitaminas esenciales. Algunos como el germinado de brócoli ayudan a
-        desintoxicar el cuerpo y fortalecer el sistema inmune.</p>
-      <p>🍽️ Porque son versátiles.
-        Puedes usarlos en ensaladas, wraps, smoothies, sándwiches o como topping crujiente y sabroso. Le dan vida a
-        cualquier plato.</p>
-      <p>⏱️ Porque te ahorran tiempo.
-        No tienes que cocinarlos. Vienen listos para consumir. Es comida rápida... pero sana.</p>
-      <p>♻️ Porque apoyas un estilo de vida sostenible.
-        Nuestros germinados se cultivan con amor, en pequeñas cantidades, sin pesticidas, sin empaques innecesarios y
-        con impacto ambiental mínimo.</p>
-      <p>🛒 Y porque te los llevamos a casa.
-        Frescos, recién cortados, sin intermediarios. Directo del brote a tu plato.</p>
+      <p>🌱 Porque son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales. Algunos como el germinado de brócoli ayudan a desintoxicar el cuerpo y fortalecer el sistema inmune.</p>
+      <p>🍽️ Porque son versátiles. Puedes usarlos en ensaladas, wraps, smoothies, sándwiches o como topping crujiente y sabroso. Le dan vida a cualquier plato.</p>
+      <p>⏱️ Porque te ahorran tiempo. No tienes que cocinarlos. Vienen listos para consumir. Es comida rápida... pero sana.</p>
+      <p>♻️ Porque apoyas un estilo de vida sostenible. Nuestros germinados se cultivan con amor, en pequeñas cantidades, sin pesticidas, sin empaques innecesarios y con impacto ambiental mínimo.</p>
+      <p>🛒 Y porque te los llevamos a casa. Frescos, recién cortados, sin intermediarios. Directo del brote a tu plato.</p>
     </section>
 
     <section class="producto">
@@ -80,6 +72,24 @@
       </div>
     </section>
 
+    <!-- Carrito visual -->
+    <div id="carrito-container" style="margin: 40px auto; width: 90%; max-width: 700px;">
+      <h3>🧺 Tu carrito:</h3>
+      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr>
+            <th style="border-bottom: 2px solid #ccc;">Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="carrito-lista"></tbody>
+      </table>
+      <p id="carrito-total" style="font-weight: bold; margin-top: 10px;">Total: $0.00</p>
+    </div>
+
+    <!-- Botón de WhatsApp -->
     <div style="text-align:center; margin: 30px;">
       <button onclick="enviarPedidoPorWhatsApp()" style="padding: 10px 20px; background-color: #25D366; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
         🛒 Enviar pedido por WhatsApp
@@ -92,11 +102,64 @@
   </footer>
 
   <script>
-    let carrito = [];
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    function guardarCarrito() {
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
+    function actualizarCarritoVisual() {
+      const lista = document.getElementById("carrito-lista");
+      const totalElem = document.getElementById("carrito-total");
+      lista.innerHTML = "";
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${item.nombre}</td>
+          <td>
+            <button onclick="cambiarCantidad(${index}, -1)">-</button>
+            ${item.cantidad}
+            <button onclick="cambiarCantidad(${index}, 1)">+</button>
+          </td>
+          <td>$${subtotal.toFixed(2)}</td>
+          <td><button onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
+        `;
+        lista.appendChild(fila);
+      });
+
+      totalElem.textContent = `Total: $${total.toFixed(2)}`;
+    }
 
     function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
+      guardarCarrito();
+      actualizarCarritoVisual();
       alert(`✅ ${nombre} fue agregado al carrito.`);
+    }
+
+    function cambiarCantidad(index, cambio) {
+      carrito[index].cantidad += cambio;
+      if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+      }
+      guardarCarrito();
+      actualizarCarritoVisual();
+    }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      guardarCarrito();
+      actualizarCarritoVisual();
     }
 
     function enviarPedidoPorWhatsApp() {
@@ -105,21 +168,27 @@
         return;
       }
 
+      if (!confirm("¿Estás seguro de que querés enviar tu pedido por WhatsApp?")) {
+        return;
+      }
+
       let mensaje = "Hola, quiero pedir los siguientes germinados:\n";
       let total = 0;
 
       carrito.forEach((item) => {
-        mensaje += `• ${item.nombre} - $${item.precio.toFixed(2)}\n`;
-        total += item.precio;
+        const subtotal = item.precio * item.cantidad;
+        mensaje += `• ${item.nombre} x${item.cantidad} - $${subtotal.toFixed(2)}\n`;
+        total += subtotal;
       });
 
-      mensaje += `\nTotal: $${total.toFixed(2)}\n`;
-      mensaje += "¿Pueden enviármelos a domicilio?";
+      mensaje += `\nTotal: $${total.toFixed(2)}\n¿Pueden enviármelos a domicilio?`;
 
-      const numero = "593979224596"; // ← CAMBIA por tu número real si hace falta
+      const numero = "593979224596"; // ← Tu número de WhatsApp
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank");
     }
+
+    window.onload = actualizarCarritoVisual;
   </script>
 </body>
 
