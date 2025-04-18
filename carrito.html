@@ -3,22 +3,34 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Carrito - Sumak Life</title>
+  <title>Carrito de compras - SUMAK LIFE</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
   <header>
-    <h1>🌱 Sumak Life</h1>
-    <p>Carrito de compras</p>
+    <h1>🌱 SUMAK LIFE - Carrito de compras</h1>
   </header>
 
   <main class="carrito">
-    <h2>Tu carrito</h2>
-    <div id="productos-carrito"></div>
+    <h2>Tu Carrito</h2>
+    <table id="tablaCarrito">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="carrito-body"></tbody>
+    </table>
 
-    <button onclick="vaciarCarrito()">Vaciar carrito</button>
-    <br><br>
+    <div class="total">
+      <p>Total: $<span id="total">0</span></p>
+    </div>
+
+    <button id="finalizar-compra">Finalizar compra</button>
     <a href="index.html">← Volver a la tienda</a>
   </main>
 
@@ -27,43 +39,48 @@
   </footer>
 
   <script>
-    // Mostrar productos en el carrito
-    function mostrarCarrito() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      let productosHTML = '';
+    // Función para actualizar el carrito
+    function actualizarCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const carritoBody = document.getElementById('carrito-body');
+      carritoBody.innerHTML = '';
 
-      if (carrito.length > 0) {
-        carrito.forEach((item, index) => {
-          productosHTML += `
-            <div class="producto-carrito">
-              <p>${item.nombre} - $${item.precio}</p>
-              <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
-            </div>
-          `;
-        });
-      } else {
-        productosHTML = '<p>El carrito está vacío.</p>';
-      }
+      let total = 0;
 
-      document.getElementById('productos-carrito').innerHTML = productosHTML;
+      carrito.forEach((producto, index) => {
+        total += producto.precio;
+        carritoBody.innerHTML += `
+          <tr>
+            <td>${producto.nombre}</td>
+            <td>$${producto.precio}</td>
+            <td><input type="number" value="1" min="1" data-index="${index}" class="cantidad"></td>
+            <td><button onclick="eliminarProducto(${index})">Eliminar</button></td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('total').innerText = total.toFixed(2);
     }
 
-    // Eliminar un producto del carrito
-    function eliminarDelCarrito(index) {
+    // Función para eliminar producto del carrito
+    function eliminarProducto(index) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.splice(index, 1); // Elimina el producto de la posición indicada
+      carrito.splice(index, 1);
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito(); // Actualiza la vista del carrito
+      actualizarCarrito();
     }
 
-    // Vaciar el carrito
-    function vaciarCarrito() {
-      localStorage.removeItem('carrito');
-      mostrarCarrito();
-    }
+    // Función para finalizar compra (puedes integrar con WhatsApp)
+    document.getElementById('finalizar-compra').addEventListener('click', () => {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const mensaje = carrito.map(producto => `${producto.nombre} - $${producto.precio}`).join('\n');
+      const total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
+      const url = `https://wa.me/0979224596?text=Me gustaría hacer un pedido de los siguientes productos:\n${mensaje}\nTotal: $${total}`;
+      window.open(url, '_blank');
+    });
 
-    // Cargar el carrito al abrir la página
-    window.onload = mostrarCarrito;
+    // Llamada inicial para cargar el carrito
+    actualizarCarrito();
   </script>
 </body>
 
