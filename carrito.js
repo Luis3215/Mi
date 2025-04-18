@@ -1,71 +1,67 @@
-// Función para actualizar el carrito visualmente
-function actualizarCarrito() {
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  const tablaCarrito = document.getElementById('tablaCarrito').getElementsByTagName('tbody')[0];
-  tablaCarrito.innerHTML = ''; // Limpiar tabla antes de renderizar
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  let total = 0;
+function agregarAlCarrito(nombre, precio) {
+  const productoExistente = carrito.find(item => item.nombre === nombre);
+  if (productoExistente) {
+    productoExistente.cantidad += 1;
+  } else {
+    carrito.push({ nombre, precio, cantidad: 1 });
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert(`${nombre} fue agregado al carrito`);
+}
 
-  // Renderizar productos en la tabla
+function cargarCarrito() {
+  const contenedor = document.getElementById("lista-carrito");
+  const total = document.getElementById("total");
+  contenedor.innerHTML = "";
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
+    total.textContent = "$0.00";
+    return;
+  }
+
   carrito.forEach((producto, index) => {
-    const row = tablaCarrito.insertRow();
-    row.innerHTML = `
-      <td>${producto.nombre}</td>
-      <td>$${producto.precio}</td>
-      <td><input type="number" value="${producto.cantidad}" min="1" class="cantidad" data-index="${index}"></td>
-      <td>$${(producto.precio * producto.cantidad).toFixed(2)}</td>
-      <td><button class="eliminar" data-index="${index}">Eliminar</button></td>
+    const fila = document.createElement("div");
+    fila.className = "item-carrito";
+    fila.innerHTML = `
+      <span>${producto.nombre}</span>
+      <span>Cantidad: <button onclick="cambiarCantidad(${index}, -1)">-</button> ${producto.cantidad} <button onclick="cambiarCantidad(${index}, 1)">+</button></span>
+      <span>$${(producto.precio * producto.cantidad).toFixed(2)}</span>
+      <button onclick="eliminarProducto(${index})">Eliminar</button>
     `;
-
-    total += producto.precio * producto.cantidad;
+    contenedor.appendChild(fila);
   });
 
-  // Mostrar el total
-  document.getElementById('totalCarrito').textContent = total.toFixed(2);
-
-  // Agregar eventos de eliminar y actualizar cantidad
-  document.querySelectorAll('.eliminar').forEach(button => {
-    button.addEventListener('click', eliminarProducto);
-  });
-
-  document.querySelectorAll('.cantidad').forEach(input => {
-    input.addEventListener('change', actualizarCantidad);
-  });
+  const totalPrecio = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+  total.textContent = `$${totalPrecio.toFixed(2)}`;
 }
 
-// Función para eliminar producto del carrito
-function eliminarProducto(event) {
-  const index = event.target.getAttribute('data-index');
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+function eliminarProducto(index) {
   carrito.splice(index, 1);
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarCarrito();
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  cargarCarrito();
 }
 
-// Función para actualizar la cantidad de un producto
-function actualizarCantidad(event) {
-  const index = event.target.getAttribute('data-index');
-  const cantidad = parseInt(event.target.value);
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-  if (cantidad < 1) return; // Evitar cantidades menores a 1
-
-  carrito[index].cantidad = cantidad;
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarCarrito();
+function cambiarCantidad(index, cambio) {
+  carrito[index].cantidad += cambio;
+  if (carrito[index].cantidad <= 0) {
+    carrito.splice(index, 1);
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  cargarCarrito();
 }
 
-// Función para finalizar la compra (puedes integrarlo con WhatsApp o formulario)
-document.getElementById('finalizar-compra').addEventListener('click', function() {
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+function confirmarPedido() {
   if (carrito.length === 0) {
     alert("Tu carrito está vacío.");
     return;
   }
-  const total = carrito.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
-  alert(`Total a pagar: $${total.toFixed(2)}`);
-  // Aquí podrías integrar con WhatsApp u otra pasarela de pago
-});
 
-// Inicializar carrito
-actualizarCarrito();
+  const mensaje = carrito.map(p => `${p.cantidad} x ${p.nombre}`).join(", ");
+  const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0).toFixed(2);
+  const whatsapp = `https://wa.me/593979224596?text=Hola,%20quiero%20comprar:%20${encodeURIComponent(mensaje)}%20-%20Total:%20$${total}`;
+  window.open(whatsapp, "_blank");
+}
+
