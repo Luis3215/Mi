@@ -198,4 +198,179 @@ header p {
     font-size: 1rem;
   }
 }
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #28a745;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+}
+
+.detalle {
+  padding: 20px;
+  margin: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.producto-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.producto-detalle img {
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.info p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+a {
+  color: #28a745;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .producto-detalle {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .producto-detalle img {
+    max-width: 90%;
+  }
+
+  .info {
+    text-align: center;
+  }
+
+  .info h3 {
+    font-size: 1.8rem;
+  }
+
+  .precio {
+    font-size: 1.2rem;
+  }
+
+  .info p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .info h3 {
+    font-size: 1.5rem;
+  }
+
+  .info p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+  }
+}
 
