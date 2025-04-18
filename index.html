@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <title>SUMAK LIFE - Germinados orgánicos</title>
@@ -12,16 +11,21 @@
   <header>
     <h1>🌱 SUMAK LIFE</h1>
     <p>Tu salud empieza con un brote.</p>
+    <a href="carrito.html" class="ver-carrito-btn">🛒 Ver carrito</a>
   </header>
 
   <main>
     <section class="descripcion">
       <h2>¿Por qué consumir germinados?</h2>
-      <p>🌱 Porque son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales...</p>
-      <p>🍽️ Porque son versátiles. Puedes usarlos en ensaladas, wraps, smoothies...</p>
-      <p>⏱️ Porque te ahorran tiempo. No tienes que cocinarlos...</p>
-      <p>♻️ Porque apoyas un estilo de vida sostenible. Nuestros germinados se cultivan con amor...</p>
-      <p>🛒 Y porque te los llevamos a casa. Frescos, recién cortados...</p>
+      <p>🌱 Porque son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales. Algunos como el germinado de brócoli ayudan a desintoxicar el cuerpo y fortalecer el sistema inmune.</p>
+      <p>🍽️ Porque son versátiles. Puedes usarlos en ensaladas, wraps, smoothies, sándwiches o como topping crujiente y sabroso. Le dan vida a cualquier plato.</p>
+      <p>⏱️ Porque te ahorran tiempo. No tienes que cocinarlos. Vienen listos para consumir. Es comida rápida... pero sana.</p>
+      <p>♻️ Porque apoyas un estilo de vida sostenible. Nuestros germinados se cultivan con amor, en pequeñas cantidades, sin pesticidas, sin empaques innecesarios y con impacto ambiental mínimo.</p>
+      <p>🛒 Y porque te los llevamos a casa. Frescos, recién cortados, sin intermediarios. Directo del brote a tu plato.</p>
+    </section>
+
+    <section class="producto">
+      <h3>PRODUCTOS</h3>
     </section>
 
     <section class="productos">
@@ -30,13 +34,15 @@
         <h4>Germinados de Alfalfa</h4>
         <p>$1.99 / bandeja</p>
         <a href="productos/alfalfa.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
       </div>
 
       <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Brócoli" alt="Germinados de Brócoli">
+        <img src="https://via.placeholder.com/200?text=Brocoli" alt="Germinados de Brócoli">
         <h4>Germinados de Brócoli</h4>
         <p>$1.99 / bandeja</p>
         <a href="productos/brocoli.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Brócoli', 1.99)">Agregar al carrito</button>
       </div>
 
       <div class="producto">
@@ -44,35 +50,39 @@
         <h4>Germinados de Lenteja</h4>
         <p>$1.99 / bandeja</p>
         <a href="productos/lenteja.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Lenteja', 1.99)">Agregar al carrito</button>
       </div>
 
       <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
+        <img src="https://via.placeholder.com/200?text=Trigo" alt="Germinados de Trigo">
         <h4>Germinados de Trigo</h4>
         <p>$1.99 / bandeja</p>
-        <a href="productos/lenteja.html"><button>Ver más</button></a>
+        <a href="productos/trigo.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
       </div>
 
       <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
-        <h4>Germinados de Acelga</h4>
-        <p>$1.99 / bandeja</p>
-        <a href="productos/lenteja.html"><button>Ver más</button></a>
-      </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
+        <img src="https://via.placeholder.com/200?text=Rabanito" alt="Germinados de Rábano">
         <h4>Germinados de Rábano</h4>
         <p>$1.99 / bandeja</p>
-        <a href="productos/lenteja.html"><button>Ver más</button></a>
+        <a href="productos/rabano.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Rábano', 1.99)">Agregar al carrito</button>
       </div>
-      <!-- Agrega los demás productos de forma similar -->
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Acelga" alt="Germinados de Acelga">
+        <h4>Germinados de Acelga</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/acelga.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Acelga', 1.99)">Agregar al carrito</button>
+      </div>
     </section>
-
-    <footer>
-      <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
-    </footer>
   </main>
-</body>
 
+  <footer>
+    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+  </footer>
+
+  <script src="carrito.js"></script>
+</body>
 </html>
