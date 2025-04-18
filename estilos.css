@@ -62,8 +62,11 @@ main {
   width: 100%;
   border-radius: 10px;
 }
-
 .producto h3 {
+  margin-top: 18px;
+  color: #1e5f21;
+}
+.producto h4 {
   margin-top: 15px;
   color: #2e7d32;
 }
