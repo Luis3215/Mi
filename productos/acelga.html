@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <title>Germinados de Alfalfa - Sumak Life</title>
+  <title>Germinados de Alfalfa - Verde Vivo</title>
   <link rel="stylesheet" href="../estilos.css">
 </head>
-
 <body>
   <header>
-    <h1>🌱 SUMAK LIFE</h1>
+    <h1>🌱 Sumak Life</h1>
     <p>Detalles del producto</p>
   </header>
 
@@ -20,8 +18,14 @@
       <div class="info">
         <h5>Germinados de Alfalfa</h5>
         <p class="precio">$1.99 / bandeja</p>
-        <p>Nuetros germinados de alfalfa son cultivados de manera artesanal, sin pesticidas ni químicos...</p>
-        <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
+        <p>
+          Nuestros germinados de alfalfa son cultivados de manera artesanal, sin pesticidas ni químicos. Son una fuente rica de proteínas vegetales, vitaminas A, B, C, E y K, y minerales como calcio, hierro y magnesio.
+        </p>
+        <p>
+          Ideales para consumir en ensaladas, wraps, sandwiches o como topping en platos calientes. Su sabor es suave y fresco.
+        </p>
+        <!-- Botón para agregar al carrito -->
+        <button id="agregarAlCarrito">Agregar al carrito</button>
         <br><br>
         <a href="../index.html">← Volver a la tienda</a>
       </div>
@@ -29,17 +33,35 @@
   </main>
 
   <footer>
-    <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
+  <!-- Script para agregar el producto al carrito -->
   <script>
-    function agregarAlCarrito(nombre, precio) {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
+    document.getElementById('agregarAlCarrito').addEventListener('click', function() {
+      const producto = {
+        nombre: 'Germinados de Alfalfa',
+        precio: 1.99,
+        cantidad: 1
+      };
+
+      // Obtener carrito actual
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      // Verificar si el producto ya está en el carrito
+      const index = carrito.findIndex(item => item.nombre === producto.nombre);
+      if (index !== -1) {
+        // Si ya está, solo incrementar la cantidad
+        carrito[index].cantidad++;
+      } else {
+        // Si no está, agregarlo al carrito
+        carrito.push(producto);
+      }
+
+      // Guardar carrito en localStorage
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      alert('Producto agregado al carrito');
-    }
+      alert('Producto añadido al carrito');
+    });
   </script>
 </body>
-
 </html>
