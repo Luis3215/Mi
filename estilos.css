@@ -98,3 +98,58 @@ footer {
   margin-top: 40px;
   color: #2d2d2d;
 }
+
+.detalle {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.producto-detalle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.producto-detalle img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h2 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.info .precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.info button {
+  background-color: #66bb6a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.info button:hover {
+  background-color: #4caf50;
+}
+
+.info a {
+  text-decoration: none;
+  color: #388e3c;
+  font-weight: bold;
+}
