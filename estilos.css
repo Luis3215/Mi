@@ -1,49 +1,97 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Verde Vivo - Germinados Saludables</title>
-  <link rel="stylesheet" href="estilos.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <h1>🌱 Verde Vivo</h1>
-    <p>Germinados frescos, naturales y llenos de vida</p>
-  </header>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <main>
-    <section class="descripcion">
-      <h2>¿Por qué consumir germinados?</h2>
-      <p>Los germinados son superalimentos ricos en nutrientes, fáciles de digerir y perfectos para agregar a tus ensaladas, sandwiches o jugos.</p>
-    </section>
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4fef4;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
 
-    <section class="productos">
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa">
-        <h3>Germinados de Alfalfa</h3>
-        <p>$250 / bandeja</p>
-        <button>Comprar</button>
-      </div>
+header {
+  background-color: #81c784;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 4px solid #66bb6a;
+}
 
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
-        <h3>Germinados de Lenteja</h3>
-        <p>$220 / bandeja</p>
-        <button>Comprar</button>
-      </div>
+header h1 {
+  font-size: 2.8rem;
+}
 
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Rabanito" alt="Germinados de Rabanito">
-        <h3>Germinados de Rabanito</h3>
-        <p>$280 / bandeja</p>
-        <button>Comprar</button>
-      </div>
-    </section>
-  </main>
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-  <footer>
-    <p>© 2025 Verde Vivo - Contacto: <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
-  </footer>
-</body>
-</html>
+.descripcion {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.descripcion h2 {
+  color: #388e3c;
+  margin-bottom: 10px;
+}
+
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.producto {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.producto:hover {
+  transform: scale(1.02);
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.producto h3 {
+  margin-top: 15px;
+  color: #2e7d32;
+}
+
+.producto p {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #66bb6a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #4caf50;
+}
+
+footer {
+  text-align: center;
+  background-color: #e8f5e9;
+  padding: 20px;
+  margin-top: 40px;
+  color: #2d2d2d;
+}
