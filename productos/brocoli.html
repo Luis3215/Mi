@@ -1,31 +1,25 @@
+<!-- productos/alfalfa.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Germinados de Alfalfa - Verde Vivo</title>
+  <title>Germinados de Alfalfa - SUMAK LIFE</title>
   <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
   <header>
-    <h1>🌱 Sumak Life</h1>
+    <h1>🌱 SUMAK LIFE</h1>
     <p>Detalles del producto</p>
   </header>
 
   <main class="detalle">
     <div class="producto-detalle">
       <img src="https://via.placeholder.com/400x300?text=Alfalfa" alt="Germinados de Alfalfa">
-
       <div class="info">
-        <h5>Germinados de Brócoli</h5>
+        <h4>Germinados de Alfalfa</h4>
         <p class="precio">$1.99 / bandeja</p>
-        <p>
-          Nuestros germinados de alfalfa son cultivados de manera artesanal, sin pesticidas ni químicos. Son una fuente rica de proteínas vegetales, vitaminas A, B, C, E y K, y minerales como calcio, hierro y magnesio.
-        </p>
-        <p>
-          Ideales para consumir en ensaladas, wraps, sandwiches o como topping en platos calientes. Su sabor es suave y fresco.
-        </p>
-        <!-- Botón para agregar al carrito -->
-        <button id="agregarAlCarrito" onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
+        <p>Germinados frescos, nutritivos y libres de pesticidas. Excelente fuente de vitaminas A, C, K y minerales.</p>
+        <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
         <br><br>
         <a href="../index.html">← Volver a la tienda</a>
       </div>
@@ -33,10 +27,17 @@
   </main>
 
   <footer>
-    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
-  <!-- Vinculamos el archivo JS -->
-  <script src="../carrito.js"></script>
+  <script>
+    function agregarAlCarrito(nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.push({ nombre, precio });
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      alert(`${nombre} agregado al carrito`);
+    }
+  </script>
 </body>
 </html>
+
