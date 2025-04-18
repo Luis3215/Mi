@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-color: #81c784;
+  background-color: #09500c;
   color: white;
   text-align: center;
   padding: 40px 20px;
@@ -30,7 +30,7 @@ main {
 }
 
 .descripcion {
-  text-align: center;
+  text-align: left;
   margin-bottom: 50px;
 }
 
