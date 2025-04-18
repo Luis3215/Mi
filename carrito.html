@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito - Sumak Life</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+  <header>
+    <h1>🌱 Sumak Life</h1>
+    <p>Carrito de compras</p>
+  </header>
+
+  <main class="carrito">
+    <h2>Tu carrito</h2>
+    <div id="productos-carrito"></div>
+
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    <br><br>
+    <a href="index.html">← Volver a la tienda</a>
+  </main>
+
+  <footer>
+    <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+  </footer>
+
+  <script>
+    // Mostrar productos en el carrito
+    function mostrarCarrito() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let productosHTML = '';
+
+      if (carrito.length > 0) {
+        carrito.forEach((item, index) => {
+          productosHTML += `
+            <div class="producto-carrito">
+              <p>${item.nombre} - $${item.precio}</p>
+              <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+            </div>
+          `;
+        });
+      } else {
+        productosHTML = '<p>El carrito está vacío.</p>';
+      }
+
+      document.getElementById('productos-carrito').innerHTML = productosHTML;
+    }
+
+    // Eliminar un producto del carrito
+    function eliminarDelCarrito(index) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(index, 1); // Elimina el producto de la posición indicada
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      mostrarCarrito(); // Actualiza la vista del carrito
+    }
+
+    // Vaciar el carrito
+    function vaciarCarrito() {
+      localStorage.removeItem('carrito');
+      mostrarCarrito();
+    }
+
+    // Cargar el carrito al abrir la página
+    window.onload = mostrarCarrito;
+  </script>
+</body>
+
+</html>
