@@ -1,86 +1,49 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verde Vivo - Germinados Saludables</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>🌱 Verde Vivo</h1>
+    <p>Germinados frescos, naturales y llenos de vida</p>
+  </header>
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-}
+  <main>
+    <section class="descripcion">
+      <h2>¿Por qué consumir germinados?</h2>
+      <p>Los germinados son superalimentos ricos en nutrientes, fáciles de digerir y perfectos para agregar a tus ensaladas, sandwiches o jugos.</p>
+    </section>
 
-header {
-  background-color: #4f46e5;
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-}
+    <section class="productos">
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa">
+        <h3>Germinados de Alfalfa</h3>
+        <p>$250 / bandeja</p>
+        <button>Comprar</button>
+      </div>
 
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
+        <h3>Germinados de Lenteja</h3>
+        <p>$220 / bandeja</p>
+        <button>Comprar</button>
+      </div>
 
-main {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
-}
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Rabanito" alt="Germinados de Rabanito">
+        <h3>Germinados de Rabanito</h3>
+        <p>$280 / bandeja</p>
+        <button>Comprar</button>
+      </div>
+    </section>
+  </main>
 
-.productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.producto {
-  background-color: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s;
-}
-
-.producto:hover {
-  transform: scale(1.03);
-}
-
-.producto img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-.producto h3 {
-  margin: 15px 0 10px;
-}
-
-.producto p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #16a34a;
-}
-
-button {
-  margin-top: 10px;
-  background-color: #4f46e5;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: #4338ca;
-}
-
-footer {
-  background-color: #e5e7eb;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-}
-
+  <footer>
+    <p>© 2025 Verde Vivo - Contacto: <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+  </footer>
+</body>
+</html>
