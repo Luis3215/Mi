@@ -140,7 +140,19 @@ td input {
   text-align: center;
 }
 
+button {
+  background-color: #E94E77;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+button:hover {
+  background-color: #d03e68;
+}
 
 button:focus {
   outline: none;
@@ -255,72 +267,4 @@ footer p {
 
 .info a:hover {
   text-decoration: underline;
-}
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f5fff2;
-  margin: 0;
-  padding: 0;
-}
-
-header, footer {
-  background-color: #a2d5a2;
-  color: #2e5e2e;
-  text-align: center;
-  padding: 1rem;
-}
-
-.carrito-link {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  color: #2e5e2e;
-  text-decoration: none;
-}
-
-.descripcion, .productos, .producto-detalle {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
-}
-
-.productos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.producto {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  background: white;
-  width: 200px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.producto img {
-  max-width: 100%;
-  height: auto;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 0.5rem;
-}
-
-.item-carrito {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid #ccc;
 }
