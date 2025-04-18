@@ -9,7 +9,7 @@
 
 <body>
   <header>
-    <h1>🌱 Sumak Life</h1>
+    <h1>🌱 SUMAK LIFE</h1>
     <p>Detalles del producto</p>
   </header>
 
@@ -20,12 +20,7 @@
       <div class="info">
         <h5>Germinados de Alfalfa</h5>
         <p class="precio">$1.99 / bandeja</p>
-        <p>
-          Nuestros germinados de alfalfa son cultivados de manera artesanal, sin pesticidas ni químicos. Son una fuente rica de proteínas vegetales, vitaminas A, B, C, E y K, y minerales como calcio, hierro y magnesio.
-        </p>
-        <p>
-          Ideales para consumir en ensaladas, wraps, sandwiches o como topping en platos calientes. Su sabor es suave y fresco.
-        </p>
+        <p>Nuetros germinados de alfalfa son cultivados de manera artesanal, sin pesticidas ni químicos...</p>
         <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
         <br><br>
         <a href="index.html">← Volver a la tienda</a>
@@ -34,16 +29,15 @@
   </main>
 
   <footer>
-    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+    <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
   <script>
-    // Función para agregar productos al carrito
     function agregarAlCarrito(nombre, precio) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
       carrito.push({ nombre, precio });
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      alert(`${nombre} agregado al carrito.`);
+      alert('Producto agregado al carrito');
     }
   </script>
 </body>
