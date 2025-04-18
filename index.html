@@ -196,6 +196,34 @@
 
     window.onload = actualizarCarritoVisual;
   </script>
+  <div id="modal" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarModal()">&times;</span>
+      <h3 id="modal-titulo"></h3>
+      <p id="modal-descripcion"></p>
+    </div>
+  </div>
+  <script>
+    const descripciones = {
+      "Germinados de Alfalfa": "Ricos en proteínas, fibra y antioxidantes. Ideales para ensaladas o sandwiches.",
+      "Germinados de Brócoli": "Contienen sulforafano, un potente desintoxicante natural. Refuerzan el sistema inmune.",
+      "Germinados de Lenteja": "Fuente vegetal de hierro y proteínas. Perfectos para dietas balanceadas.",
+      "Germinados de Trigo": "Contienen clorofila y enzimas digestivas. Excelente para jugos verdes.",
+      "Germinados de Rábano": "Picantes, llenos de vitaminas A y C. Dan sabor y color a tus platos.",
+      "Germinados de Acelga": "Suaves y nutritivos. Aportan magnesio, potasio y vitamina K.",
+    };
+  
+    function mostrarDetalles(nombreProducto) {
+      document.getElementById('modal-titulo').textContent = nombreProducto;
+      document.getElementById('modal-descripcion').textContent = descripciones[nombreProducto] || "Sin descripción disponible.";
+      document.getElementById('modal').style.display = 'block';
+    }
+  
+    function cerrarModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+  
 </body>
 
 </html>
