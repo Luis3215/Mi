@@ -6,48 +6,22 @@
   <title>SUMAK LIFE - Germinados orgánicos</title>
   <link rel="stylesheet" href="estilos.css">
   <link rel="icon" href="logo/SUMAK-LIFE.jpg" type="image/jpeg">
-  <style>
-    /* Aquí puedes agregar tu CSS adicional */
-    .carrito {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .carrito:disabled {
-      background-color: gray;
-    }
-
-    .producto {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    /* Asegúrate de que el diseño sea amigable */
-    .producto img {
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
 </head>
 
 <body>
   <header>
     <h1>🌱 SUMAK LIFE</h1>
     <p>Tu salud empieza con un brote.</p>
-    <button class="carrito" onclick="verCarrito()">Ver carrito (0)</button>
   </header>
 
   <main>
     <section class="descripcion">
-      <!-- Aquí viene tu descripción de la tienda -->
+      <h2>¿Por qué consumir germinados?</h2>
+      <p>🌱 Porque son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales...</p>
+      <p>🍽️ Porque son versátiles. Puedes usarlos en ensaladas, wraps, smoothies...</p>
+      <p>⏱️ Porque te ahorran tiempo. No tienes que cocinarlos...</p>
+      <p>♻️ Porque apoyas un estilo de vida sostenible. Nuestros germinados se cultivan con amor...</p>
+      <p>🛒 Y porque te los llevamos a casa. Frescos, recién cortados...</p>
     </section>
 
     <section class="productos">
@@ -55,46 +29,30 @@
         <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa">
         <h4>Germinados de Alfalfa</h4>
         <p>$1.99 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
+        <a href="productos/alfalfa.html"><button>Ver más</button></a>
       </div>
-      <!-- Más productos... -->
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Brócoli" alt="Germinados de Brócoli">
+        <h4>Germinados de Brócoli</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/brocoli.html"><button>Ver más</button></a>
+      </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
+        <h4>Germinados de Lenteja</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/lenteja.html"><button>Ver más</button></a>
+      </div>
+
+      <!-- Agrega los demás productos de forma similar -->
     </section>
+
+    <footer>
+      <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+    </footer>
   </main>
-
-  <footer>
-    <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
-  </footer>
-
-  <script>
-    // Función para agregar productos al carrito
-    function agregarAlCarrito(nombre, precio) {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      actualizarBotonCarrito();
-    }
-
-    // Función para actualizar el texto del botón del carrito
-    function actualizarBotonCarrito() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      let botonCarrito = document.querySelector('.carrito');
-      botonCarrito.textContent = `Ver carrito (${carrito.length})`;
-    }
-
-    // Función para ver el carrito
-    function verCarrito() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      if (carrito.length > 0) {
-        alert("Carrito:\n" + carrito.map(item => `${item.nombre} - $${item.precio}`).join("\n"));
-      } else {
-        alert("El carrito está vacío.");
-      }
-    }
-
-    // Actualizar el botón cuando se carga la página
-    window.onload = actualizarBotonCarrito;
-  </script>
 </body>
 
 </html>
-
