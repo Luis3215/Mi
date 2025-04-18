@@ -7,35 +7,33 @@
   <link rel="stylesheet" href="estilos.css">
   <link rel="icon" href="logo/SUMAK-LIFE.jpg" type="image/jpeg">
   <style>
-    /* CSS para el modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-contenido {
-      background-color: #fff;
-      margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: left;
-    }
-
-    .cerrar {
-      color: #aaa;
-      float: right;
-      font-size: 24px;
+    /* Aquí puedes agregar tu CSS adicional */
+    .carrito {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
+    }
+
+    .carrito:disabled {
+      background-color: gray;
+    }
+
+    .producto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* Asegúrate de que el diseño sea amigable */
+    .producto img {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -44,24 +42,12 @@
   <header>
     <h1>🌱 SUMAK LIFE</h1>
     <p>Tu salud empieza con un brote.</p>
+    <button class="carrito" onclick="verCarrito()">Ver carrito (0)</button>
   </header>
 
   <main>
     <section class="descripcion">
-      <h2>¿Por qué consumir germinados?</h2>
-      <p>🌱 Porque son súper nutritivos.
-        Tienen proteínas vegetales, fibra y vitaminas esenciales. Algunos como el germinado de brócoli ayudan a
-        desintoxicar el cuerpo y fortalecer el sistema inmune.</p>
-      <p>🍽️ Porque son versátiles.
-        Puedes usarlos en ensaladas, wraps, smoothies, sándwiches o como topping crujiente y sabroso. Le dan vida a
-        cualquier plato.</p>
-      <p>⏱️ Porque te ahorran tiempo.
-        No tienes que cocinarlos. Vienen listos para consumir. Es comida rápida... pero sana.</p>
-      <p>♻️ Porque apoyas un estilo de vida sostenible.
-        Nuestros germinados se cultivan con amor, en pequeñas cantidades, sin pesticidas, sin empaques innecesarios y
-        con impacto ambiental mínimo.</p>
-      <p>🛒 Y porque te los llevamos a casa.
-        Frescos, recién cortados, sin intermediarios. Directo del brote a tu plato.</p>
+      <!-- Aquí viene tu descripción de la tienda -->
     </section>
 
     <section class="productos">
@@ -69,49 +55,9 @@
         <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa">
         <h4>Germinados de Alfalfa</h4>
         <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Alfalfa')">Ver más</button>
         <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
       </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Brocoli" alt="Germinados de Brócoli">
-        <h4>Germinados de Brócoli</h4>
-        <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Brócoli')">Ver más</button>
-        <button onclick="agregarAlCarrito('Germinados de Brócoli', 1.99)">Agregar al carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
-        <h4>Germinados de Lenteja</h4>
-        <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Lenteja')">Ver más</button>
-        <button onclick="agregarAlCarrito('Germinados de Lenteja', 1.99)">Agregar al carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Trigo" alt="Germinados de Trigo">
-        <h4>Germinados de Trigo</h4>
-        <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Trigo')">Ver más</button>
-        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Rabanito" alt="Germinados de Rábano">
-        <h4>Germinados de Rábano</h4>
-        <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Rábano')">Ver más</button>
-        <button onclick="agregarAlCarrito('Germinados de Rábano', 1.99)">Agregar al carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://via.placeholder.com/200?text=Acelga" alt="Germinados de Acelga">
-        <h4>Germinados de Acelga</h4>
-        <p>$1.99 / bandeja</p>
-        <button onclick="mostrarDetalles('Germinados de Acelga')">Ver más</button>
-        <button onclick="agregarAlCarrito('Germinados de Acelga', 1.99)">Agregar al carrito</button>
-      </div>
+      <!-- Más productos... -->
     </section>
   </main>
 
@@ -119,44 +65,36 @@
     <p>© 2025 SUMAK LIFE - Contacto:0979224596 <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
-  <!-- Modal para ver detalles del producto -->
-  <div id="modal" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal()">&times;</span>
-      <h3 id="modal-titulo"></h3>
-      <p id="modal-descripcion"></p>
-    </div>
-  </div>
-
   <script>
-    const descripciones = {
-      "Germinados de Alfalfa": "Ricos en proteínas, fibra y antioxidantes. Ideales para ensaladas o sandwiches.",
-      "Germinados de Brócoli": "Contienen sulforafano, un potente desintoxicante natural. Refuerzan el sistema inmune.",
-      "Germinados de Lenteja": "Fuente vegetal de hierro y proteínas. Perfectos para dietas balanceadas.",
-      "Germinados de Trigo": "Contienen clorofila y enzimas digestivas. Excelente para jugos verdes.",
-      "Germinados de Rábano": "Picantes, llenos de vitaminas A y C. Dan sabor y color a tus platos.",
-      "Germinados de Acelga": "Suaves y nutritivos. Aportan magnesio, potasio y vitamina K.",
-    };
-
-    function mostrarDetalles(nombreProducto) {
-      document.getElementById('modal-titulo').textContent = nombreProducto;
-      document.getElementById('modal-descripcion').textContent = descripciones[nombreProducto] || "Sin descripción disponible.";
-      document.getElementById('modal').style.display = 'block';
-    }
-
-    function cerrarModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    // Funciones del carrito (puedes integrarlas como desees)
-    let carrito = [];
-
+    // Función para agregar productos al carrito
     function agregarAlCarrito(nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
       carrito.push({ nombre, precio });
-      console.log(carrito);
-      alert(`${nombre} agregado al carrito.`);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarBotonCarrito();
     }
+
+    // Función para actualizar el texto del botón del carrito
+    function actualizarBotonCarrito() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let botonCarrito = document.querySelector('.carrito');
+      botonCarrito.textContent = `Ver carrito (${carrito.length})`;
+    }
+
+    // Función para ver el carrito
+    function verCarrito() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      if (carrito.length > 0) {
+        alert("Carrito:\n" + carrito.map(item => `${item.nombre} - $${item.precio}`).join("\n"));
+      } else {
+        alert("El carrito está vacío.");
+      }
+    }
+
+    // Actualizar el botón cuando se carga la página
+    window.onload = actualizarBotonCarrito;
   </script>
 </body>
 
 </html>
+
