@@ -1,169 +1,201 @@
-/* estilos.css */
-
-body {
-  font-family: 'Segoe UI', sans-serif;
+/* Estilos generales */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
   color: #333;
 }
 
 header {
-  background-color: #a2d5ab;
+  background-color: #28a745;
+  color: white;
+  padding: 20px;
   text-align: center;
-  padding: 1.5rem 1rem;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
-main {
-  padding: 1rem;
+header p {
+  font-size: 1.2rem;
 }
 
+/* Descripción */
 .descripcion {
-  max-width: 900px;
-  margin: auto;
-  padding: 1rem;
-  text-align: justify;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
 }
 
 .descripcion h2 {
-  color: #2d6a4f;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .descripcion p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
-.producto h3 {
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 2rem;
-  color: #2d6a4f;
-}
-
-/* TARJETAS DE PRODUCTOS */
+/* Productos */
 .productos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .producto {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 1rem;
-  width: 180px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
   text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.producto:hover {
-  transform: scale(1.03);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .producto img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .producto h4 {
-  font-size: 1rem;
-  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  margin: 10px 0;
 }
 
 .producto p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #555;
 }
 
 .producto button {
-  background-color: #2d6a4f;
+  background-color: #28a745;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  padding: 0.4rem 0.8rem;
-  margin: 0.3rem;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.85rem;
+  margin: 10px 0;
+  font-size: 1rem;
 }
 
 .producto button:hover {
-  background-color: #40916c;
+  background-color: #218838;
 }
 
-/* CARRITO */
+/* Carrito */
 #carrito-container {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  max-width: 700px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#carrito-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#carrito-container th, #carrito-container td {
+  padding: 10px;
+  text-align: left;
+}
+
+#carrito-container th {
+  background-color: #f8f8f8;
+}
+
+#carrito-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
 }
 
 #carrito-container button {
-  background-color: #f28482;
+  background-color: #25D366;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
 #carrito-container button:hover {
-  background-color: #e76f51;
+  background-color: #128C7E;
 }
 
-/* PIE DE PÁGINA */
-footer {
-  background-color: #a2d5ab;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-}
+/* Ajustes de Responsividad */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
 
-/* RESPONSIVE */
-@media screen and (max-width: 600px) {
-  .producto {
-    width: 45%;
+  .productos {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 
   .producto img {
-    width: 80px;
-    height: 80px;
+    max-width: 180px;
   }
 
   .producto h4 {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
 
   .producto p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .producto button {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 
-  header h1 {
-    font-size: 1.5rem;
+  #carrito-container {
+    padding: 15px;
   }
 
-  .producto h3 {
-    font-size: 1.5rem;
+  #carrito-total {
+    font-size: 1rem;
   }
 }
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .descripcion p {
+    font-size: 0.9rem;
+  }
+
+  .producto button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  #carrito-container button {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+}
+
