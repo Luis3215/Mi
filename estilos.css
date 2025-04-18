@@ -1,155 +1,71 @@
-/* Reset básico para asegurar consistencia en todos los navegadores */
-* {
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
-  color: #333;
 }
 
 header {
-  background-color: #2a9d8f;
+  background-color: #4CAF50;
   color: white;
-  padding: 20px 0;
+  padding: 10px 20px;
   text-align: center;
 }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-header p {
-  font-size: 1.2rem;
+h1 {
+  margin: 0;
 }
 
 main {
   padding: 20px;
 }
 
-/* Estilos de la sección de productos */
-.productos {
+.producto, .producto-detalle {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.producto {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  width: 200px;
-  transition: transform 0.3s ease;
+.producto img, .producto-detalle img {
+  width: 150px;
 }
 
-.producto:hover {
-  transform: translateY(-5px);
-}
-
-.producto img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.producto h4 {
-  font-size: 1.5rem;
-  color: #2a9d8f;
+.producto h4, .producto-detalle h5 {
   margin: 10px 0;
 }
 
-.producto p {
-  font-size: 1rem;
-  color: #555;
+.precio {
+  font-weight: bold;
 }
 
 button {
-  background-color: #2a9d8f;
+  background-color: #4CAF50;
   color: white;
-  font-size: 1rem;
-  padding: 10px 15px;
+  padding: 10px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #21867a;
+  background-color: #45a049;
 }
 
-/* Estilos del carrito visual */
-#carrito-container {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#carrito-container table {
+table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
-#carrito-container th, #carrito-container td {
+th, td {
   padding: 10px;
   text-align: left;
 }
 
-#carrito-container th {
-  background-color: #2a9d8f;
-  color: white;
+td input {
+  width: 50px;
 }
 
-#carrito-lista tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-#carrito-container button {
-  background-color: #ff6347;
-}
-
-#carrito-container button:hover {
-  background-color: #e5533e;
-}
-
-/* Estilo para el botón de WhatsApp */
-button[onclick="enviarPedidoPorWhatsApp()"] {
-  background-color: #25D366;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;
-  margin: 30px auto;
-}
-
-button[onclick="enviarPedidoPorWhatsApp()"]:hover {
-  background-color: #128C7E;
-}
-
-/* Estilos del pie de página */
-footer {
-  background-color: #2a9d8f;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-footer a:hover {
-  text-decoration: underline;
+.total {
+  font-size: 20px;
+  margin-top: 20px;
 }
