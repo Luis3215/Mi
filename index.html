@@ -140,17 +140,28 @@
       totalElem.textContent = `Total: $${total.toFixed(2)}`;
     }
 
-    function agregarAlCarrito(nombre, precio) {
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
-      guardarCarrito();
-      actualizarCarritoVisual();
-      alert(`✅ ${nombre} fue agregado al carrito.`);
-    }
+
+  function agregarAlCarrito(nombre, precio) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.push({ nombre, precio });
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    mostrarToast(`${nombre} agregado al carrito`);
+  }
+
+  function mostrarToast(mensaje) {
+    const toast = document.getElementById('toast');
+    toast.textContent = mensaje;
+    toast.classList.remove('oculto');
+    toast.classList.add('mostrar');
+
+    setTimeout(() => {
+      toast.classList.remove('mostrar');
+      toast.classList.add('oculto');
+    }, 3000);
+  }
+
+
 
     function cambiarCantidad(index, cambio) {
       carrito[index].cantidad += cambio;
@@ -196,6 +207,6 @@
     window.onload = actualizarCarritoVisual;
   </script>
 </body>
-
+<div id="toast" class="toast oculto">Producto agregado al carrito 🛒</div>
 </html>
 
