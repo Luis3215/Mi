@@ -376,8 +376,11 @@
       });
       resumen += `\nTotal: $${document.getElementById("carrito-total").textContent.split(": $")[1]}`;
       
-      // Mostrar confirmación
-      document.getElementById("confirmacion-modal").style.display = "flex";
+      // Enviar mensaje a WhatsApp
+      const mensaje = encodeURIComponent(resumen);
+      const telefono = "0979224596"; // Cambia este número por tu número de WhatsApp
+      const url = `https://wa.me/${telefono}?text=${mensaje}`;
+      window.open(url, "_blank");
     }
 
     function finalizarCompra() {
