@@ -283,5 +283,29 @@ a:hover {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(20px);
+}
+
+.toast.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.oculto {
+  display: none;
+}
 
 
