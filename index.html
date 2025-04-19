@@ -13,6 +13,7 @@
       padding: 0;
       background: #f7fff8;
       color: #333;
+      line-height: 1.6;
     }
 
     header, footer {
@@ -24,6 +25,12 @@
     h1 {
       margin: 0;
       font-size: 2rem;
+      color: #2d6a4f;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #40916c;
     }
 
     main {
@@ -34,17 +41,32 @@
       max-width: 800px;
       margin: auto;
       padding-bottom: 40px;
+      text-align: center;
+    }
+
+    .descripcion h2 {
+      font-size: 2rem;
+      color: #40916c;
+      margin-bottom: 20px;
+    }
+
+    .descripcion p {
+      font-size: 1.1rem;
+      color: #2a9d8f;
+      margin: 10px 0;
     }
 
     .producto h3 {
       text-align: center;
       margin-bottom: 20px;
+      font-size: 2rem;
     }
 
     .productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
+      margin-top: 20px;
     }
 
     .producto {
@@ -53,17 +75,18 @@
       padding: 16px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .producto:hover {
       transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
     .producto img {
       width: 100%;
       height: auto;
-      max-height: 150px;
+      max-height: 200px;
       object-fit: contain;
     }
 
@@ -75,7 +98,7 @@
       color: white;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s ease;
     }
 
     .producto button:hover {
@@ -139,7 +162,7 @@
     /* Responsive */
     @media (max-width: 600px) {
       .producto img {
-        max-height: 120px;
+        max-height: 150px;
       }
 
       h1 {
@@ -148,6 +171,10 @@
 
       .producto button {
         font-size: 0.9rem;
+      }
+
+      .descripcion h2 {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -229,121 +256,72 @@
           <tr>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Subtotal</th>
-            <th>Acción</th>
+            <th>Precio</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
-        <tbody id="carrito-lista"></tbody>
+        <tbody id="tabla-carrito"></tbody>
       </table>
-      <p id="carrito-total">Total: $0.00</p>
+      <div id="carrito-total">Total: $0.00</div>
+      <button onclick="comprarCarrito()">Finalizar compra</button>
     </div>
 
-    <div style="text-align:center; margin: 30px;">
-      <button onclick="enviarPedidoPorWhatsApp()" style="padding: 10px 20px; background-color: #25D366; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
-        🛒 Enviar pedido por WhatsApp
-      </button>
-    </div>
+    <div id="toast">Producto agregado al carrito!</div>
   </main>
 
   <footer>
-    <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
+    <p>&copy; 2025 SUMAK LIFE. Todos los derechos reservados.</p>
+    <p>¿Tienes preguntas? <a href="https://wa.me/123456789" target="_blank">Contáctanos por WhatsApp</a></p>
   </footer>
 
-  <div id="toast">✅ Producto agregado al carrito</div>
-
   <script>
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    function guardarCarrito() {
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+    let carrito = [];
+    
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      actualizarCarrito();
+      mostrarToast();
     }
 
-    function mostrarToast(mensaje) {
+    function actualizarCarrito() {
+      const tablaCarrito = document.getElementById("tabla-carrito");
+      const carritoTotal = document.getElementById("carrito-total");
+      tablaCarrito.innerHTML = '';
+      
+      let total = 0;
+      
+      carrito.forEach(item => {
+        total += item.precio;
+        tablaCarrito.innerHTML += `
+          <tr>
+            <td>${item.producto}</td>
+            <td>1</td>
+            <td>$${item.precio.toFixed(2)}</td>
+            <td><button onclick="eliminarDelCarrito('${item.producto}')">Eliminar</button></td>
+          </tr>
+        `;
+      });
+
+      carritoTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function eliminarDelCarrito(producto) {
+      carrito = carrito.filter(item => item.producto !== producto);
+      actualizarCarrito();
+    }
+
+    function mostrarToast() {
       const toast = document.getElementById("toast");
-      toast.textContent = mensaje;
       toast.style.display = "block";
       setTimeout(() => {
         toast.style.display = "none";
-      }, 2500);
+      }, 2000);
     }
 
-    function actualizarCarritoVisual() {
-      const lista = document.getElementById("carrito-lista");
-      const totalElem = document.getElementById("carrito-total");
-      lista.innerHTML = "";
-      let total = 0;
-
-      carrito.forEach((item, index) => {
-        const subtotal = item.precio * item.cantidad;
-        total += subtotal;
-
-        const fila = document.createElement("tr");
-        fila.innerHTML = `
-          <td>${item.nombre}</td>
-          <td>
-            <button onclick="cambiarCantidad(${index}, -1)">-</button>
-            ${item.cantidad}
-            <button onclick="cambiarCantidad(${index}, 1)">+</button>
-          </td>
-          <td>$${subtotal.toFixed(2)}</td>
-          <td><button onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
-        `;
-        lista.appendChild(fila);
-      });
-
-      totalElem.textContent = `Total: $${total.toFixed(2)}`;
+    function comprarCarrito() {
+      const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+      window.location.href = `https://wa.me/123456789?text=¡Hola! Quiero comprar los siguientes productos: ${carrito.map(item => item.producto).join(", ")}. El total es $${total.toFixed(2)}.`;
     }
-
-    function agregarAlCarrito(nombre, precio) {
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
-      guardarCarrito();
-      actualizarCarritoVisual();
-      mostrarToast(`✅ ${nombre} agregado al carrito`);
-    }
-
-    function cambiarCantidad(index, cambio) {
-      carrito[index].cantidad += cambio;
-      if (carrito[index].cantidad <= 0) {
-        carrito.splice(index, 1);
-      }
-      guardarCarrito();
-      actualizarCarritoVisual();
-    }
-
-    function eliminarDelCarrito(index) {
-      carrito.splice(index, 1);
-      guardarCarrito();
-      actualizarCarritoVisual();
-    }
-
-    function enviarPedidoPorWhatsApp() {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-
-      if (!confirm("¿Enviar tu pedido por WhatsApp?")) return;
-
-      let mensaje = "Hola, quiero pedir los siguientes germinados:\n";
-      let total = 0;
-
-      carrito.forEach(item => {
-        const subtotal = item.precio * item.cantidad;
-        mensaje += `• ${item.nombre} x${item.cantidad} - $${subtotal.toFixed(2)}\n`;
-        total += subtotal;
-      });
-
-      mensaje += `\nTotal: $${total.toFixed(2)}\n¿Pueden enviármelos a domicilio?`;
-      const numero = "593979224596";
-      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
-    }
-
-    window.onload = actualizarCarritoVisual;
   </script>
 </body>
 </html>
