@@ -2,49 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Germinados de Trigo - SUMAK LIFE</title>
-  <link rel="stylesheet" href="../estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUMAK LIFE - Germinados de Trigo</title>
   <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    /* Estilos generales del sitio */
+  </style>
 </head>
 <body>
   <header>
     <h1>🌱 SUMAK LIFE</h1>
-    <p>Detalles del producto</p>
+    <p>Tu salud empieza con un brote.</p>
   </header>
 
-  <main class="detalle">
-    <div class="producto-detalle">
-      <img src="https://via.placeholder.com/400x300?text=Trigo" alt="Germinados de Trigo">
-      <div class="info">
-        <h3>Germinados de Trigo</h3>
-        <p class="precio">$1.99 / bandeja</p>
-        <p>Ricos en antioxidantes, enzimas y clorofila. Perfectos para jugos verdes y detox natural.</p>
-        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
-        <br><br>
-        <a href="../index.html">← Volver a la tienda</a>
-      </div>
+  <main>
+    <section class="descripcion">
+      <h2>Germinados de Trigo</h2>
+      <p>El trigo germinado es una excelente fuente de proteínas, vitaminas y minerales. Ideal para quienes buscan aumentar su energía diaria.</p>
+    </section>
+
+    <section class="producto">
+      <img src="https://via.placeholder.com/200?text=Trigo" alt="Germinados de Trigo">
+      <h4>Germinados de Trigo</h4>
+      <p>$1.20 / bandeja</p>
+      <button onclick="agregarAlCarrito('Germinados de Trigo', 1.20)">Agregar al carrito</button>
+    </section>
+
+    <div id="carrito-container">
+      <h3>🧺 Tu carrito:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="carrito-lista"></tbody>
+      </table>
+      <p id="carrito-total">Total: $0.00</p>
     </div>
+
+    <button class="finalizar-compra" onclick="finalizarCompra()">🛒 Finalizar compra</button>
   </main>
 
   <footer>
     <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
+  <div id="toast">✅ Producto agregado al carrito</div>
+
   <script>
-    function agregarAlCarrito(nombre, precio) {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      alert(`${nombre} agregado al carrito`);
-    }
+    /* Aquí va el script para manejar el carrito */
   </script>
 </body>
 </html>
+
+
 
 
 
