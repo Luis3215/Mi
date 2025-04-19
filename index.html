@@ -378,9 +378,10 @@
       
       // Enviar mensaje a WhatsApp
       const mensaje = encodeURIComponent(resumen);
-      const telefono = "0979224596"; // Cambia este número por tu número de WhatsApp
+      const telefono = "593979224596"; // Formato internacional sin + ni espacios
       const url = `https://wa.me/${telefono}?text=${mensaje}`;
-      window.open(url, "_blank");
+       window.open(url, "_blank");
+ 
     }
 
     function finalizarCompra() {
