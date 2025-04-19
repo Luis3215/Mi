@@ -2,195 +2,296 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUMAK LIFE - Germinados Orgánicos</title>
-  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUMAK LIFE - Germinados orgánicos</title>
+  <link rel="icon" href="logo/SUMAK-LIFE.jpg" type="image/jpeg">
   <style>
-    * {
-      box-sizing: border-box;
+    /* ---- CSS GENERAL ---- */
+    body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
-    }
-
-    body {
-      background-color: #f3f9f4;
+      background: #f7fff8;
       color: #333;
-      padding-bottom: 100px;
     }
 
-    header {
-      background-color: #a4d4ae;
-      padding: 1em;
+    header, footer {
+      background: #d8f3dc;
       text-align: center;
+      padding: 20px;
     }
 
-    header h1 {
-      font-size: 2em;
-      color: #2c5530;
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .descripcion {
+      max-width: 800px;
+      margin: auto;
+      padding-bottom: 40px;
+    }
+
+    .producto h3 {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1em;
-      padding: 1em;
-      max-width: 1200px;
-      margin: auto;
+      gap: 20px;
     }
 
     .producto {
-      background: white;
+      background: #ffffff;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s ease;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
     }
 
     .producto:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .producto img {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .producto .contenido {
-      padding: 1em;
-    }
-
-    .producto h3 {
-      margin-bottom: 0.5em;
-      font-size: 1.1em;
-      color: #2c5530;
-    }
-
-    .producto p {
-      font-size: 0.9em;
-      margin-bottom: 0.5em;
-    }
-
-    .producto .precio {
-      font-weight: bold;
-      color: #388e3c;
+      height: auto;
+      max-height: 150px;
+      object-fit: contain;
     }
 
     .producto button {
-      background-color: #66bb6a;
-      color: white;
+      margin-top: 8px;
+      padding: 8px 12px;
       border: none;
-      padding: 0.5em 1em;
-      border-radius: 8px;
+      background-color: #52b788;
+      color: white;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background-color 0.2s;
     }
 
     .producto button:hover {
-      background-color: #558b2f;
+      background-color: #40916c;
     }
 
-    footer {
-      position: fixed;
-      bottom: 0;
+    /* Carrito */
+    #carrito-container {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    table {
       width: 100%;
-      background: #a4d4ae;
-      text-align: center;
-      padding: 0.5em;
-      font-size: 0.9em;
+      border-collapse: collapse;
+      text-align: left;
     }
 
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background: #b7e4c7;
+    }
+
+    td button {
+      padding: 4px 8px;
+      background-color: #e63946;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    td button:hover {
+      background-color: #ba1c2f;
+    }
+
+    #carrito-total {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Toast */
     #toast {
       position: fixed;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #4caf50;
+      bottom: 30px;
+      right: 20px;
+      background: #52b788;
       color: white;
-      padding: 1em 1.5em;
-      border-radius: 10px;
+      padding: 14px 20px;
+      border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      opacity: 0;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: none;
       z-index: 999;
     }
 
-    #toast.mostrar {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-10px);
+    /* Responsive */
+    @media (max-width: 600px) {
+      .producto img {
+        max-height: 120px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .producto button {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>🌱 SUMAK LIFE</h1>
-    <p>Germinados Orgánicos</p>
+    <p>Tu salud empieza con un brote.</p>
   </header>
 
-  <main class="productos">
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Trigo" alt="Trigo">
-      <div class="contenido">
-        <h3>Germinados de Trigo</h3>
-        <p class="precio">$1.99 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
-      </div>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Rábano" alt="Rábano">
-      <div class="contenido">
-        <h3>Germinados de Rábano</h3>
-        <p class="precio">$2.20 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Rábano', 2.20)">Agregar al carrito</button>
-      </div>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Lenteja" alt="Lenteja">
-      <div class="contenido">
-        <h3>Germinados de Lenteja</h3>
-        <p class="precio">$1.80 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Lenteja', 1.80)">Agregar al carrito</button>
-      </div>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Brócoli" alt="Brócoli">
-      <div class="contenido">
-        <h3>Germinados de Brócoli</h3>
-        <p class="precio">$2.50 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Brócoli', 2.50)">Agregar al carrito</button>
-      </div>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Acelga" alt="Acelga">
-      <div class="contenido">
-        <h3>Germinados de Acelga</h3>
-        <p class="precio">$2.10 / bandeja</p>
-        <button onclick="agregarAlCarrito('Germinados de Acelga', 2.10)">Agregar al carrito</button>
-      </div>
-    </div>
-    <div class="producto">
-      <img src="https://via.placeholder.com/400x300?text=Alfalfa" alt="Alfalfa">
-      <div class="contenido">
-        <h3>Germinados de Alfalfa</h3>
-        <p class="precio">$1.99 / bandeja</p>
+  <main>
+    <section class="descripcion">
+      <h2>¿Por qué consumir germinados?</h2>
+      <p>🌱 Súper nutritivos: proteínas, fibra y vitaminas esenciales.</p>
+      <p>🍽️ Versátiles: ensaladas, wraps, smoothies o como topping.</p>
+      <p>⏱️ Rápidos: vienen listos para consumir.</p>
+      <p>♻️ Sostenibles: cultivados sin pesticidas ni empaques innecesarios.</p>
+      <p>🛒 A domicilio: directos del brote a tu plato.</p>
+    </section>
+
+    <section class="producto">
+      <h3>PRODUCTOS</h3>
+    </section>
+
+    <section class="productos">
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa">
+        <h4>Germinados de Alfalfa</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/alfalfa.html"><button>Ver más</button></a>
         <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
       </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Brócoli" alt="Germinados de Brócoli">
+        <h4>Germinados de Brócoli</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/brocoli.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Brócoli', 1.99)">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja">
+        <h4>Germinados de Lenteja</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/lenteja.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Lenteja', 1.99)">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Trigo" alt="Germinados de Trigo">
+        <h4>Germinados de Trigo</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/trigo.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Rábano" alt="Germinados de Rábano">
+        <h4>Germinados de Rábano</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/rabano.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Rábano', 1.99)">Agregar al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://via.placeholder.com/200?text=Acelga" alt="Germinados de Acelga">
+        <h4>Germinados de Acelga</h4>
+        <p>$1.99 / bandeja</p>
+        <a href="productos/acelga.html"><button>Ver más</button></a>
+        <button onclick="agregarAlCarrito('Germinados de Acelga', 1.99)">Agregar al carrito</button>
+      </div>
+    </section>
+
+    <div id="carrito-container">
+      <h3>🧺 Tu carrito:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="carrito-lista"></tbody>
+      </table>
+      <p id="carrito-total">Total: $0.00</p>
+    </div>
+
+    <div style="text-align:center; margin: 30px;">
+      <button onclick="enviarPedidoPorWhatsApp()" style="padding: 10px 20px; background-color: #25D366; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
+        🛒 Enviar pedido por WhatsApp
+      </button>
     </div>
   </main>
-
-  <div id="toast"></div>
 
   <footer>
     <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
+  <div id="toast">✅ Producto agregado al carrito</div>
+
   <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     function guardarCarrito() {
-      localStorage.setItem('carrito', JSON.stringify(carrito));
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById("toast");
+      toast.textContent = mensaje;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2500);
+    }
+
+    function actualizarCarritoVisual() {
+      const lista = document.getElementById("carrito-lista");
+      const totalElem = document.getElementById("carrito-total");
+      lista.innerHTML = "";
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${item.nombre}</td>
+          <td>
+            <button onclick="cambiarCantidad(${index}, -1)">-</button>
+            ${item.cantidad}
+            <button onclick="cambiarCantidad(${index}, 1)">+</button>
+          </td>
+          <td>$${subtotal.toFixed(2)}</td>
+          <td><button onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
+        `;
+        lista.appendChild(fila);
+      });
+
+      totalElem.textContent = `Total: $${total.toFixed(2)}`;
     }
 
     function agregarAlCarrito(nombre, precio) {
@@ -201,21 +302,52 @@
         carrito.push({ nombre, precio, cantidad: 1 });
       }
       guardarCarrito();
-      mostrarToast(`${nombre} agregado al carrito`);
+      actualizarCarritoVisual();
+      mostrarToast(`✅ ${nombre} agregado al carrito`);
     }
 
-    function mostrarToast(mensaje) {
-      const toast = document.getElementById('toast');
-      toast.textContent = mensaje;
-      toast.classList.add('mostrar');
-      setTimeout(() => {
-        toast.classList.remove('mostrar');
-      }, 3000);
+    function cambiarCantidad(index, cambio) {
+      carrito[index].cantidad += cambio;
+      if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+      }
+      guardarCarrito();
+      actualizarCarritoVisual();
     }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      guardarCarrito();
+      actualizarCarritoVisual();
+    }
+
+    function enviarPedidoPorWhatsApp() {
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      if (!confirm("¿Enviar tu pedido por WhatsApp?")) return;
+
+      let mensaje = "Hola, quiero pedir los siguientes germinados:\n";
+      let total = 0;
+
+      carrito.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        mensaje += `• ${item.nombre} x${item.cantidad} - $${subtotal.toFixed(2)}\n`;
+        total += subtotal;
+      });
+
+      mensaje += `\nTotal: $${total.toFixed(2)}\n¿Pueden enviármelos a domicilio?`;
+      const numero = "593979224596";
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
+    }
+
+    window.onload = actualizarCarritoVisual;
   </script>
-
 </body>
 </html>
+
 
 
 
