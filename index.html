@@ -140,11 +140,6 @@
       background-color: #8d0d0d;
     }
 
-    #carrito-total {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
     /* Toast */
     #toast {
       position: fixed;
@@ -263,7 +258,7 @@
         <tbody id="tabla-carrito"></tbody>
       </table>
       <div id="carrito-total">Total: $0.00</div>
-      <button onclick="comprarCarrito()">Finalizar compra por whatsapp</button>
+      <button onclick="comprarCarrito()">Finalizar compra</button>
     </div>
 
     <div id="toast">Producto agregado al carrito!</div>
@@ -276,9 +271,14 @@
 
   <script>
     let carrito = [];
-    
+
     function agregarAlCarrito(producto, precio) {
-      carrito.push({ producto, precio });
+      const productoExistente = carrito.find(item => item.producto === producto);
+      if (productoExistente) {
+        productoExistente.cantidad++;
+      } else {
+        carrito.push({ producto, precio, cantidad: 1 });
+      }
       actualizarCarrito();
       mostrarToast();
     }
@@ -291,18 +291,34 @@
       let total = 0;
       
       carrito.forEach(item => {
-        total += item.precio;
+        total += item.precio * item.cantidad;
         tablaCarrito.innerHTML += `
           <tr>
             <td>${item.producto}</td>
-            <td>1</td>
-            <td>$${item.precio.toFixed(2)}</td>
+            <td>
+              <button onclick="modificarCantidad('${item.producto}', -1)">-</button>
+              ${item.cantidad}
+              <button onclick="modificarCantidad('${item.producto}', 1)">+</button>
+            </td>
+            <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
             <td><button onclick="eliminarDelCarrito('${item.producto}')">Eliminar</button></td>
           </tr>
         `;
       });
 
       carritoTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function modificarCantidad(producto, cantidad) {
+      const item = carrito.find(i => i.producto === producto);
+      if (item) {
+        item.cantidad += cantidad;
+        if (item.cantidad <= 0) {
+          eliminarDelCarrito(producto);
+        } else {
+          actualizarCarrito();
+        }
+      }
     }
 
     function eliminarDelCarrito(producto) {
@@ -319,12 +335,13 @@
     }
 
     function comprarCarrito() {
-      const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+      const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
       window.location.href = `https://wa.me/123456789?text=¡Hola! Quiero comprar los siguientes productos: ${carrito.map(item => item.producto).join(", ")}. El total es $${total.toFixed(2)}.`;
     }
   </script>
 </body>
 </html>
+
 
 
 
