@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUMAK LIFE - Germinados orgánicos</title>
   <link rel="stylesheet" href="estilos.css" />
-  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="icon" href="logo/SUMAK-LIFE.jpg" type="image/jpeg" />
 </head>
 
 <body>
@@ -18,11 +17,11 @@
   <main>
     <section class="descripcion">
       <h2>¿Por qué consumir germinados?</h2>
-      <p>🌱 Porque son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales. Algunos como el germinado de brócoli ayudan a desintoxicar el cuerpo y fortalecer el sistema inmune.</p>
-      <p>🍽️ Porque son versátiles. Puedes usarlos en ensaladas, wraps, smoothies, sándwiches o como topping crujiente y sabroso. Le dan vida a cualquier plato.</p>
-      <p>⏱️ Porque te ahorran tiempo. No tienes que cocinarlos. Vienen listos para consumir. Es comida rápida... pero sana.</p>
-      <p>♻️ Porque apoyas un estilo de vida sostenible. Nuestros germinados se cultivan con amor, en pequeñas cantidades, sin pesticidas, sin empaques innecesarios y con impacto ambiental mínimo.</p>
-      <p>🛒 Y porque te los llevamos a casa. Frescos, recién cortados, sin intermediarios. Directo del brote a tu plato.</p>
+      <p>🌱 Son súper nutritivos. Tienen proteínas vegetales, fibra y vitaminas esenciales.</p>
+      <p>🍽️ Son versátiles. En ensaladas, wraps, smoothies, sándwiches o como topping crujiente.</p>
+      <p>⏱️ Ahorro de tiempo. Listos para consumir. Comida rápida, pero sana.</p>
+      <p>♻️ Estilo de vida sostenible. Sin pesticidas, empaques innecesarios ni intermediarios.</p>
+      <p>🛒 Entrega directa. Frescos, recién cortados, directo del brote a tu plato.</p>
     </section>
 
     <section class="producto">
@@ -30,7 +29,8 @@
     </section>
 
     <section class="productos">
-      <div class="producto">
+      <!-- Producto: Alfalfa -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Alfalfa" alt="Germinados de Alfalfa" />
         <h4>Germinados de Alfalfa</h4>
         <p>$1.99 / bandeja</p>
@@ -38,7 +38,8 @@
         <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
       </div>
 
-      <div class="producto">
+      <!-- Producto: Brócoli -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Brocoli" alt="Germinados de Brócoli" />
         <h4>Germinados de Brócoli</h4>
         <p>$1.99 / bandeja</p>
@@ -46,7 +47,8 @@
         <button onclick="agregarAlCarrito('Germinados de Brócoli', 1.99)">Agregar al carrito</button>
       </div>
 
-      <div class="producto">
+      <!-- Producto: Lenteja -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Lenteja" alt="Germinados de Lenteja" />
         <h4>Germinados de Lenteja</h4>
         <p>$1.99 / bandeja</p>
@@ -54,7 +56,8 @@
         <button onclick="agregarAlCarrito('Germinados de Lenteja', 1.99)">Agregar al carrito</button>
       </div>
 
-      <div class="producto">
+      <!-- Producto: Trigo -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Trigo" alt="Germinados de Trigo" />
         <h4>Germinados de Trigo</h4>
         <p>$1.99 / bandeja</p>
@@ -62,7 +65,8 @@
         <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
       </div>
 
-      <div class="producto">
+      <!-- Producto: Rábano -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Rabanito" alt="Germinados de Rábano" />
         <h4>Germinados de Rábano</h4>
         <p>$1.99 / bandeja</p>
@@ -70,7 +74,8 @@
         <button onclick="agregarAlCarrito('Germinados de Rábano', 1.99)">Agregar al carrito</button>
       </div>
 
-      <div class="producto">
+      <!-- Producto: Acelga -->
+      <div class="producto-card">
         <img src="https://via.placeholder.com/200?text=Acelga" alt="Germinados de Acelga" />
         <h4>Germinados de Acelga</h4>
         <p>$1.99 / bandeja</p>
@@ -79,12 +84,13 @@
       </div>
     </section>
 
+    <!-- Carrito -->
     <div id="carrito-container">
       <h3>🧺 Tu carrito:</h3>
-      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+      <table>
         <thead>
           <tr>
-            <th style="border-bottom: 2px solid #ccc;">Producto</th>
+            <th>Producto</th>
             <th>Cantidad</th>
             <th>Subtotal</th>
             <th>Acción</th>
@@ -92,13 +98,12 @@
         </thead>
         <tbody id="carrito-lista"></tbody>
       </table>
-      <p id="carrito-total" style="font-weight: bold; margin-top: 10px;">Total: $0.00</p>
+      <p id="carrito-total">Total: $0.00</p>
     </div>
 
-    <div style="text-align:center; margin: 30px;">
-      <button onclick="enviarPedidoPorWhatsApp()" style="padding: 10px 20px; background-color: #25D366; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
-        🛒 Enviar pedido por WhatsApp
-      </button>
+    <!-- Botón de WhatsApp -->
+    <div class="whatsapp-btn">
+      <button onclick="enviarPedidoPorWhatsApp()">🛒 Enviar pedido por WhatsApp</button>
     </div>
   </main>
 
@@ -106,6 +111,10 @@
     <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
 
+  <!-- Toast visual -->
+  <div id="toast" class="toast oculto">Producto agregado al carrito 🛒</div>
+
+  <!-- Script -->
   <script>
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -140,28 +149,17 @@
       totalElem.textContent = `Total: $${total.toFixed(2)}`;
     }
 
-
-  function agregarAlCarrito(nombre, precio) {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push({ nombre, precio });
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    mostrarToast(`${nombre} agregado al carrito`);
-  }
-
-  function mostrarToast(mensaje) {
-    const toast = document.getElementById('toast');
-    toast.textContent = mensaje;
-    toast.classList.remove('oculto');
-    toast.classList.add('mostrar');
-
-    setTimeout(() => {
-      toast.classList.remove('mostrar');
-      toast.classList.add('oculto');
-    }, 3000);
-  }
-
-
+    function agregarAlCarrito(nombre, precio) {
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
+      guardarCarrito();
+      actualizarCarritoVisual();
+      mostrarToast(`${nombre} agregado al carrito`);
+    }
 
     function cambiarCantidad(index, cambio) {
       carrito[index].cantidad += cambio;
@@ -180,33 +178,41 @@
 
     function enviarPedidoPorWhatsApp() {
       if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
+        mostrarToast("Tu carrito está vacío");
         return;
       }
 
-      if (!confirm("¿Estás seguro de que querés enviar tu pedido por WhatsApp?")) {
-        return;
-      }
+      if (!confirm("¿Estás seguro de enviar tu pedido por WhatsApp?")) return;
 
       let mensaje = "Hola, quiero pedir los siguientes germinados:\n";
       let total = 0;
 
-      carrito.forEach((item) => {
+      carrito.forEach(item => {
         const subtotal = item.precio * item.cantidad;
         mensaje += `• ${item.nombre} x${item.cantidad} - $${subtotal.toFixed(2)}\n`;
         total += subtotal;
       });
 
       mensaje += `\nTotal: $${total.toFixed(2)}\n¿Pueden enviármelos a domicilio?`;
-
-      const numero = "593979224596"; // ← Tu número de WhatsApp
+      const numero = "593979224596";
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank");
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById('toast');
+      toast.textContent = mensaje;
+      toast.classList.remove('oculto');
+      toast.classList.add('mostrar');
+      setTimeout(() => {
+        toast.classList.remove('mostrar');
+        toast.classList.add('oculto');
+      }, 3000);
     }
 
     window.onload = actualizarCarritoVisual;
   </script>
 </body>
-<div id="toast" class="toast oculto">Producto agregado al carrito 🛒</div>
 </html>
+
 
