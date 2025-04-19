@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Germinados de Trigo - SUMAK LIFE</title>
   <link rel="stylesheet" href="../estilos.css">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
   <header>
@@ -28,29 +29,20 @@
   <footer>
     <p>© 2025 SUMAK LIFE - Contacto: 0979224596 | <a href="mailto:info@verdevivo.com">info@verdevivo.com</a></p>
   </footer>
-  <div id="toast">✅ Producto agregado al carrito</div>
+
   <script>
     function agregarAlCarrito(nombre, precio) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
       localStorage.setItem('carrito', JSON.stringify(carrito));
-  
-      mostrarToast(`${nombre} agregado al carrito`);
-    }
-  
-    function mostrarToast(mensaje) {
-      const toast = document.getElementById('toast');
-      toast.textContent = mensaje;
-      toast.classList.remove('oculto');
-      toast.classList.add('mostrar');
-  
-      setTimeout(() => {
-        toast.classList.remove('mostrar');
-        toast.classList.add('oculto');
-      }, 3000);
+
     }
   </script>
-  
 </body>
 </html>
 
