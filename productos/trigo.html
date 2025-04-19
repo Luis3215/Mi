@@ -17,7 +17,7 @@
       <div class="info">
         <h3>Germinados de Trigo</h3>
         <p class="precio">$1.99 / bandeja</p>
-        <p>Ricos en antioxidantes, enzimas y clorofila. Perfectos para jugos verdes y detox natural.</p>
+        <p>Germinados frescos, nutritivos y libres de pesticidas. Excelente fuente de vitaminas A, C, K y minerales.</p>
         <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
         <br><br>
         <a href="../index.html">← Volver a la tienda</a>
@@ -32,18 +32,22 @@
   <script>
     function agregarAlCarrito(nombre, precio) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
+      carrito.push({ nombre, precio });
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      alert(`${nombre} agregado al carrito`);
+      mostrarToast(`${nombre} agregado al carrito`);
+    }
+
+    function mostrarToast(mensaje) {
+      let toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerText = mensaje;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
     }
   </script>
 </body>
 </html>
+
 
 
 
