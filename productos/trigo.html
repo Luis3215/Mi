@@ -1,9 +1,8 @@
-<!-- productos/alfalfa.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Germinados de Alfalfa - SUMAK LIFE</title>
+  <title>Germinados de Trigo - SUMAK LIFE</title>
   <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
@@ -14,12 +13,12 @@
 
   <main class="detalle">
     <div class="producto-detalle">
-      <img src="https://via.placeholder.com/400x300?text=Alfalfa" alt="Germinados de Alfalfa">
+      <img src="https://via.placeholder.com/400x300?text=Trigo" alt="Germinados de Trigo">
       <div class="info">
         <h3>Germinados de Trigo</h3>
         <p class="precio">$1.99 / bandeja</p>
-        <p>Germinados frescos, nutritivos y libres de pesticidas. Excelente fuente de vitaminas A, C, K y minerales.</p>
-        <button onclick="agregarAlCarrito('../Germinados de trigo', 1.99)">Agregar al carrito</button>
+        <p>Ricos en antioxidantes, enzimas y clorofila. Perfectos para jugos verdes y detox natural.</p>
+        <button onclick="agregarAlCarrito('Germinados de Trigo', 1.99)">Agregar al carrito</button>
         <br><br>
         <a href="../index.html">← Volver a la tienda</a>
       </div>
@@ -33,12 +32,18 @@
   <script>
     function agregarAlCarrito(nombre, precio) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
       localStorage.setItem('carrito', JSON.stringify(carrito));
       alert(`${nombre} agregado al carrito`);
     }
   </script>
 </body>
 </html>
+
 
 
