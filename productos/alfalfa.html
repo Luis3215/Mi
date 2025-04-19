@@ -7,7 +7,7 @@
   <link rel="icon" href="../logo.png" type="image/png">
   <link rel="stylesheet" href="../estilos.css">
   <style>
-    /* Estilos generales del sitio */
+    /* Aquí va el estilo personalizado */
   </style>
 </head>
 <body>
@@ -19,7 +19,7 @@
   <main>
     <section class="descripcion">
       <h2>Germinados de Alfalfa</h2>
-      <p>Los germinados de alfalfa son conocidos por ser muy nutritivos, ricos en vitaminas A, C, E y K, además de ser ideales para combatir la anemia y mejorar la digestión.</p>
+      <p>Los germinados de alfalfa son muy nutritivos, ricos en vitaminas A, C, E y K, ideales para combatir la anemia y mejorar la digestión.</p>
     </section>
 
     <section class="producto">
@@ -46,6 +46,8 @@
     </div>
 
     <button class="finalizar-compra" onclick="finalizarCompra()">🛒 Finalizar compra</button>
+    <br>
+    <a href="../index.html" class="volver">← Volver a la tienda</a>
   </main>
 
   <footer>
@@ -55,7 +57,80 @@
   <div id="toast">✅ Producto agregado al carrito</div>
 
   <script>
-    /* Aquí va el script para manejar el carrito */
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    function guardarCarrito() {
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById("toast");
+      toast.textContent = mensaje;
+      toast.style.display = "block";
+      setTimeout(() => toast.style.display = "none", 2500);
+    }
+
+    function agregarAlCarrito(nombre, precio) {
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
+      guardarCarrito();
+      mostrarToast(`${nombre} agregado al carrito`);
+      renderizarCarrito();
+    }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      guardarCarrito();
+      renderizarCarrito();
+    }
+
+    function renderizarCarrito() {
+      const lista = document.getElementById("carrito-lista");
+      const totalSpan = document.getElementById("carrito-total");
+      lista.innerHTML = "";
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+        lista.innerHTML += `
+          <tr>
+            <td>${item.nombre}</td>
+            <td>${item.cantidad}</td>
+            <td>$${subtotal.toFixed(2)}</td>
+            <td><button onclick="eliminarDelCarrito(${index})">❌</button></td>
+          </tr>
+        `;
+      });
+
+      totalSpan.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function finalizarCompra() {
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      let mensaje = "Hola, quiero pedir los siguientes germinados:\n";
+      let total = 0;
+
+      carrito.forEach(item => {
+        mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}\n`;
+        total += item.precio * item.cantidad;
+      });
+
+      mensaje += `\nTotal: $${total.toFixed(2)}\n¿Pueden enviármelos a domicilio?`;
+      const numero = "593979224596";
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
+    }
+
+    // Render inicial
+    renderizarCarrito();
   </script>
 </body>
 </html>
