@@ -1,9 +1,8 @@
-<!-- productos/alfalfa.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Germinados de Alfalfa - SUMAK LIFE</title>
+  <title>Germinados de Trigo - SUMAK LIFE</title>
   <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
@@ -18,8 +17,8 @@
       <div class="info">
         <h3>Germinados de Alfalfa</h3>
         <p class="precio">$1.99 / bandeja</p>
-        <p>Germinados frescos, nutritivos y libres de pesticidas. Excelente fuente de vitaminas A, C, K y minerales.</p>
-        <button onclick="agregarAlCarrito('../Germinados de alfalfa', 1.99)">Agregar al carrito</button>
+        <p>Frescos, nutritivos y libres de pesticidas. Excelente fuente de vitaminas A, C, K y minerales.</p>
+        <button onclick="agregarAlCarrito('Germinados de Alfalfa', 1.99)">Agregar al carrito</button>
         <br><br>
         <a href="../index.html">← Volver a la tienda</a>
       </div>
@@ -33,11 +32,17 @@
   <script>
     function agregarAlCarrito(nombre, precio) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
       localStorage.setItem('carrito', JSON.stringify(carrito));
       alert(`${nombre} agregado al carrito`);
     }
   </script>
 </body>
 </html>
+
 
