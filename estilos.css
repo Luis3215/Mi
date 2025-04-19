@@ -38,7 +38,19 @@ main {
 .descripcion p {
   font-size: 1.1rem;
 }
-
+.descripcion button {
+  background-color: #52b788;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.descripcion button:hover {
+  background-color: #40916c;
+}
 /* ---- PRODUCTO ---- */
 .producto {
   display: flex;
